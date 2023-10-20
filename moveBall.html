@@ -1,0 +1,68 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:lightgreen"></div>
+
+<script>
+
+var positionX = 0;
+var positionY = 0;
+var velocity = 75;
+var velocityY = 75;
+var reverse = false;
+var ball = document.getElementById("ball");
+
+//write a function that can change the position of the html element "ball"
+function moveBall() {
+  // two fixed x-axis coordinates (you will use these variable in step 3)
+  var Xmin = 0;
+  var Xmax = 600;
+  var Ymin = 0;
+  var Ymax = 600;
+
+  if (positionX > Xmax || positionX === Xmax || reverse === true){
+    var randomSize = (Math.random()*50) +30;
+    positionX = positionX - velocity;
+    positionY = positionY - velocityY;
+    ball.style.background = 'lightblue';
+    //ball.style.height = '100';
+    //ball.style.width = '100';
+    reverse = true;
+    if (positionX === Xmin){
+      reverse = false;
+      ball.style.height = randomSize.toString();
+      ball.style.width = randomSize.toString();
+    }
+  }
+
+  else {
+    var randomSize = (Math.random()*60) + 30;
+    positionX = positionX + velocity;
+    positionY = positionY + velocityY;
+    ball.style.background = 'lightpink';
+    var randomSize = (Math.random()*50) +30;
+    console.log(randomSize)
+    if (positionX === Xmax){
+      reverse = true;
+      ball.style.height = randomSize.toString();
+      ball.style.width = randomSize.toString();
+    }
+  }
+
+  ball.style.left = positionX + 'px';
+  ball.style.top = positionY + 'px';
+
+  }
+
+
+
+// This call the moveBall function every 100ms
+setInterval(moveBall, 100);
+
+
+</script>
